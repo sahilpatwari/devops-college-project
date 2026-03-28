@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visual Resume Editor — Build and preview your professional resume in real-time." />
+  <title>Visual Resume Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ HEADER ============ -->
+  <header id="app-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">📄</span>
+        <h1>Resume<span class="accent">Editor</span></h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-print" class="btn btn-outline" title="Download / Print Resume">
+          <span class="btn-icon">🖨️</span> Print / PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN LAYOUT ============ -->
+  <main id="app-main">
+    <!-- ---- EDITOR PANEL ---- -->
+    <section id="editor-panel" aria-label="Editor">
+      <h2 class="panel-title">Edit Your Resume</h2>
+
+      <!-- Personal Info -->
+      <fieldset class="field-group">
+        <legend>Personal Information</legend>
+        <div class="field">
+          <label for="inp-name">Full Name</label>
+          <input type="text" id="inp-name" placeholder="John Doe" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="inp-email">Email</label>
+            <input type="email" id="inp-email" placeholder="john@example.com" />
+          </div>
+          <div class="field">
+            <label for="inp-phone">Phone</label>
+            <input type="tel" id="inp-phone" placeholder="+1 234 567 890" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="inp-location">Location</label>
+          <input type="text" id="inp-location" placeholder="New York, USA" />
+        </div>
+        <div class="field">
+          <label for="inp-linkedin">LinkedIn URL</label>
+          <input type="url" id="inp-linkedin" placeholder="https://linkedin.com/in/johndoe" />
+        </div>
+      </fieldset>
+
+      <!-- Summary -->
+      <fieldset class="field-group">
+        <legend>Professional Summary</legend>
+        <div class="field">
+          <textarea id="inp-summary" rows="4" placeholder="A brief 2-3 sentence summary of your professional background and goals…"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Skills -->
+      <fieldset class="field-group">
+        <legend>Skills</legend>
+        <div class="field">
+          <label for="inp-skills">Comma-separated list</label>
+          <input type="text" id="inp-skills" placeholder="JavaScript, Docker, Jenkins, Git, Linux" />
+        </div>
+      </fieldset>
+
+      <!-- Experience -->
+      <fieldset class="field-group">
+        <legend>Experience</legend>
+        <div id="experience-list"></div>
+        <button id="btn-add-exp" class="btn btn-sm" type="button">+ Add Experience</button>
+      </fieldset>
+
+      <!-- Education -->
+      <fieldset class="field-group">
+        <legend>Education</legend>
+        <div id="education-list"></div>
+        <button id="btn-add-edu" class="btn btn-sm" type="button">+ Add Education</button>
+      </fieldset>
+    </section>
+
+    <!-- ---- PREVIEW PANEL ---- -->
+    <section id="preview-panel" aria-label="Resume Preview">
+      <h2 class="panel-title">Live Preview</h2>
+      <div id="resume-preview">
+        <!-- Filled dynamically by app.js -->
+        <div class="resume-page" id="resume-page">
+          <div class="resume-header-block">
+            <h2 id="prev-name" class="prev-name">Your Name</h2>
+            <p id="prev-contact" class="prev-contact"></p>
+          </div>
+          <div id="prev-summary-section" class="resume-section" style="display:none;">
+            <h3>Professional Summary</h3>
+            <p id="prev-summary"></p>
+          </div>
+          <div id="prev-skills-section" class="resume-section" style="display:none;">
+            <h3>Skills</h3>
+            <div id="prev-skills" class="skills-tags"></div>
+          </div>
+          <div id="prev-experience-section" class="resume-section" style="display:none;">
+            <h3>Experience</h3>
+            <div id="prev-experience"></div>
+          </div>
+          <div id="prev-education-section" class="resume-section" style="display:none;">
+            <h3>Education</h3>
+            <div id="prev-education"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="app-footer">
+    <p>Visual Resume Editor &mdash; A DevOps CI/CD Showcase Project &bull; Built with ❤️ and Jenkins</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
