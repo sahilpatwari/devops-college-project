@@ -1,6 +1,6 @@
 # 📄 Visual Resume Editor — DevOps CI/CD Showcase
 
-A web-based resume editor that lets you fill in your details and see a live preview. **The primary purpose of this project is to demonstrate DevOps practices** — specifically a Jenkins CI/CD pipeline, Docker containerization, automated testing, and linting.
+A simple web-based resume editor that lets you fill in your details and see a live preview. **The primary purpose of this project is to demonstrate DevOps practices** — specifically a Jenkins CI/CD pipeline, Docker containerization, automated testing, and linting.
 
 ---
 
