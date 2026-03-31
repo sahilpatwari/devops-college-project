@@ -20,7 +20,7 @@ pipeline {
     // ---- Environment Variables ----
     environment {
         // Docker image configuration
-        DOCKER_REGISTRY = 'registry.example.com'        // placeholder registry URL
+        DOCKER_REGISTRY = 'sahil3342'        // placeholder registry URL
         DOCKER_IMAGE    = 'visual-resume-editor'
         DOCKER_TAG      = "${env.BUILD_NUMBER ?: 'latest'}"
         IMAGE_FULL      = "${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}"
@@ -118,12 +118,15 @@ pipeline {
                 sh "docker tag ${IMAGE_FULL} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
 
                 echo "📤 Pushing Docker image to registry..."
-                // In a real setup, wrap with:
-                //   withCredentials([usernamePassword(...)]) { ... }
-                // or use:
-                //   docker.withRegistry('https://registry.example.com', 'docker-creds') { ... }
-                sh "docker push ${IMAGE_FULL}"
-                sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                    
+                    // Log in to Docker Hub
+                    sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
+                    
+                    // Push the versioned tag and the latest tag
+                    sh "docker push ${IMAGE_FULL}"
+                    sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
+                }
             }
         }
 
