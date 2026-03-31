@@ -156,7 +156,7 @@ pipeline {
             '''
             
             // Send the exact same box to Slack, wrapped in markdown code blocks to preserve spacing
-            slackSend channel: '#deployments', color: 'good', message: """```
+            slackSend channel: 'deployment', color: 'good', message: """```
             ╔══════════════════════════════════════╗
             ║   ✅  BUILD SUCCESSFUL               ║
             ║   Pipeline completed all stages.     ║
@@ -171,7 +171,7 @@ pipeline {
             ╚══════════════════════════════════════╝
             '''
             
-            slackSend channel: '#deployments', color: 'danger', message: """```
+            slackSend channel: 'deployment', color: 'danger', message: """```
             ╔══════════════════════════════════════╗
             ║   ❌  BUILD FAILED                   ║
             ║   Check console output for errors.   ║
