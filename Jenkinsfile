@@ -137,7 +137,7 @@ pipeline {
                 // Wait for the app to start, then health-check
                 echo '⏳ Waiting for application to start...'
                 sh 'sleep 15'
-                sh 'docker exec resume-editor-nginx wget -qO- http://localhost/api/health'
+                sh 'docker exec resume-editor-nginx wget -qO- http://127.0.0.1/api/health'
                 echo '✅ Deployment successful — app is healthy!'
             }
         }
