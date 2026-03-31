@@ -34,7 +34,7 @@ pipeline {
 
     // ---- Tool Installations ----
     tools {
-        nodejs 'NodeJS-22'   // Must match the name configured in Jenkins > Global Tool Configuration
+        nodejs 'NodeJS-18'   // Must match the name configured in Jenkins > Global Tool Configuration
     }
 
     // ---- Pipeline Options ----
