@@ -36,7 +36,7 @@ services:
     build:
       context: .
       dockerfile: nginx/Dockerfile.nginx
-    container_name: resume-editor-app
+    container_name: resume-editor-nginx
     ports:
       - "80:80"
     depends_on:
