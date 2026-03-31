@@ -39,7 +39,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ${WORKSPACE}/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ${WORKSPACE}/public:/usr/share/nginx/html:ro
     depends_on:
       app:
         condition: service_healthy

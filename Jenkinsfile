@@ -131,12 +131,11 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo '🚀 Deploying to staging environment...'
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d'
+                sh "WORKSPACE=${WORKSPACE} docker-compose up -d --force-recreate"
 
                 // Wait for the app to start, then health-check
                 echo '⏳ Waiting for application to start...'
-                sh 'sleep 5'
+                sh 'sleep 60'
                 sh 'curl --fail http://localhost/api/health || exit 1'
                 echo '✅ Deployment successful — app is healthy!'
             }
