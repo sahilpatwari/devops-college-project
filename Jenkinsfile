@@ -25,9 +25,6 @@ pipeline {
         DOCKER_TAG      = "${env.BUILD_NUMBER ?: 'latest'}"
         IMAGE_FULL      = "${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}"
 
-        // Node.js
-        NODE_ENV = 'production'
-
         // Disable interactive prompts
         CI = 'true'
     }
@@ -157,9 +154,14 @@ pipeline {
             ║   Pipeline completed all stages.     ║
             ╚══════════════════════════════════════╝
             '''
-            // In production, send a Slack / Email notification:
-            // slackSend channel: '#deployments', color: 'good',
-            //     message: "✅ Build #${env.BUILD_NUMBER} succeeded"
+            
+            // Send the exact same box to Slack, wrapped in markdown code blocks to preserve spacing
+            slackSend channel: '#deployments', color: 'good', message: """```
+            ╔══════════════════════════════════════╗
+            ║   ✅  BUILD SUCCESSFUL               ║
+            ║   Pipeline completed all stages.     ║
+            ╚══════════════════════════════════════╝
+            Build #${env.BUILD_NUMBER}```"""
         }
         failure {
             echo '''
@@ -168,8 +170,13 @@ pipeline {
             ║   Check console output for errors.   ║
             ╚══════════════════════════════════════╝
             '''
-            // slackSend channel: '#deployments', color: 'danger',
-            //     message: "❌ Build #${env.BUILD_NUMBER} failed"
+            
+            slackSend channel: '#deployments', color: 'danger', message: """```
+            ╔══════════════════════════════════════╗
+            ║   ❌  BUILD FAILED                   ║
+            ║   Check console output for errors.   ║
+            ╚══════════════════════════════════════╝
+            Build #${env.BUILD_NUMBER}```"""
         }
         always {
             echo "🧹 Cleaning up workspace..."
