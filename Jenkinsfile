@@ -131,7 +131,8 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo '🚀 Deploying to staging environment...'
-                sh "WORKSPACE=${WORKSPACE} docker-compose up -d --force-recreate"
+                sh "docker-compose down"
+                sh "docker-compose up -d --build --force-recreate"
 
                 // Wait for the app to start, then health-check
                 echo '⏳ Waiting for application to start...'
